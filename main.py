@@ -145,17 +145,52 @@ class MainWindow(QMainWindow):
         dialog.exec()
 
     def load_file(self, file_path):
-        pass
+        self.student_ids = []
+        self.original_grades = []
+        self.corrected_grades = []
+
+        with open(file_path, "r") as f:
+            lines = f.readlines()
+
+        self.file_header = lines[0]
+
+        for line in lines[1:]:
+            parts = line.strip().split(",")
+            student_id = parts[0]
+            grade = int(parts[1])  # אם הציונים בקובץ עשרוניים (כמו 85.5), החלף int ב-float
+
+            self.student_ids.append(student_id)
+            self.original_grades.append(grade)
+            self.corrected_grades.append(grade)
+
+        self.update_table()
 
     def update_table(self):
-        pass
+        for row in range(len(self.student_ids)):
+            self.table.setItem(row, 0, QTableWidgetItem(str(self.student_ids[row])))
+            self.table.setItem(row, 1, QTableWidgetItem(str(self.original_grades[row])))
+            self.table.setItem(row, 2, QTableWidgetItem(str(self.corrected_grades[row])))
 
     def apply_bonus(self):
-        pass
+        bonus = self.bonus_input.value()
+        for i in range(len(self.original_grades)):
+            new_grade = self.original_grades[i] + bonus
+            if new_grade > 100:
+                new_grade = 100
+            self.corrected_grades[i] = new_grade
+
+        self.update_table()
 
     def update_file(self):
-        pass
+        if self.selected_file == '':
+            return
 
+        with open(self.selected_file, "w") as f:
+            f.write(self.file_header)
+            for i in range(len(self.student_ids)):
+                f.write(f"{self.student_ids[i]},{self.corrected_grades[i]}\n")
+
+        open_file_cross_platform(self.selected_file)
 
 def main():
     app = QApplication(sys.argv)
