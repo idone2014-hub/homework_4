@@ -17,7 +17,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-GITHUB_URL = "https://github.com/idone2014-hub/python-ex2"
+GITHUB_URL = "https://github.com/idone2014-hub/homework_4/blob/master/main.py"
 
 
 def open_file_cross_platform(file_path):
@@ -42,8 +42,7 @@ class AboutDialog(QDialog):
 
         description = QLabel(
             f'A tool for correcting student grades.<br>'
-            f'<a href="{GITHUB_URL}">Visit the GitHub repository</a>'
-        )
+            f'<a href="{GITHUB_URL}">Visit the GitHub repository</a>')
         description.setOpenExternalLinks(True)
 
         close_button = QPushButton("Close")
@@ -95,6 +94,12 @@ class MainWindow(QMainWindow):
 
         self.table = QTableWidget(50, 3)
         self.table.setHorizontalHeaderLabels(["ID", "Original Grades", "Corrected Grades"])
+        self.table.setColumnWidth(0, 150)
+        self.table.setColumnWidth(1, 220)
+        self.table.setColumnWidth(2, 220)
+
+        for row in range(50):
+            self.table.setRowHeight(row, 38)
         main_layout.addWidget(self.table)
 
         footer = QHBoxLayout()
@@ -114,6 +119,8 @@ class MainWindow(QMainWindow):
         main_layout.addLayout(footer)
 
         central_widget.setLayout(main_layout)
+        central_widget.setObjectName("centralWidget")
+        self.setCentralWidget(central_widget)
 
     def open_grades_file(self):
         file_path, _ = QFileDialog.getOpenFileName(

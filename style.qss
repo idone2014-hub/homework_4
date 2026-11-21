@@ -56,30 +56,29 @@ QPushButton:pressed {
     border-color: #1d4ed8;
 }
 
-QTableWidget {
+QTableWidget QTableWidget {
     background-color: #ffffff;
-    alternate-background-color: #f8fafd;
+    alternate-background-color: #f8fafc;
     color: #26364d;
-    border: 1px solid #dce4ef;
+    border: 1px solid #d7e0ec;
     border-radius: 10px;
-    gridline-color: #e8edf4;
-    selection-background-color: #e5efff;
-    selection-color: #173b74;
-    font-size: 13px;
+    gridline-color: #e3e9f2;
+    font-size: 14px;
 }
 
 QHeaderView::section {
-    background-color: #f1f5fa;
-    color: #52627a;
+    background-color: #dce8f7;
+    color: #1e3557;
     border: none;
-    border-bottom: 1px solid #dce4ef;
-    padding: 11px 12px;
-    font-size: 12px;
+    border-right: 1px solid #c3d2e6;
+    border-bottom: 1px solid #b5c6dc;
+    padding: 16px 14px;
+    font-size: 15px;
     font-weight: 700;
 }
 
 QTableWidget::item {
-    padding: 7px;
+    padding: 12px;
 }
 
 QSpinBox {
