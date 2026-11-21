@@ -21,7 +21,9 @@ QLabel {
 #subtitle {
     color: #6b778c;
     font-size: 14px;
-    margin-top: -12px;
+    margin-top: 0px;
+    margin-bottom: 8px;
+    padding-top: 4px;
 }
 
 QPushButton {
@@ -56,14 +58,18 @@ QPushButton:pressed {
     border-color: #1d4ed8;
 }
 
-QTableWidget QTableWidget {
+QTableWidget {
     background-color: #ffffff;
     alternate-background-color: #f8fafc;
     color: #26364d;
     border: 1px solid #d7e0ec;
     border-radius: 10px;
-    gridline-color: #e3e9f2;
+    gridline-color: #cbd6e5;
     font-size: 14px;
+}
+
+QTableWidget::viewport {
+    background-color: #ffffff;
 }
 
 QHeaderView::section {
@@ -72,13 +78,28 @@ QHeaderView::section {
     border: none;
     border-right: 1px solid #c3d2e6;
     border-bottom: 1px solid #b5c6dc;
-    padding: 16px 14px;
     font-size: 15px;
     font-weight: 700;
 }
 
+QHeaderView::section:horizontal {
+    padding: 10px 12px;
+    text-align: center;
+}
+
+QHeaderView::section:vertical {
+    background-color: #edf3fa;
+    color: #26364d;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    qproperty-alignment: AlignCenter;
+}
+
 QTableWidget::item {
     padding: 12px;
+    background-color: #ffffff;
+    color: #26364d;
 }
 
 QSpinBox {
@@ -108,4 +129,11 @@ QSpinBox:focus {
 
 #aboutDescription a {
     color: #2563eb;
+}
+
+QTableCornerButton::section {
+    background-color: #dce8f7;
+    border: none;
+    border-right: 1px solid #c3d2e6;
+    border-bottom: 1px solid #b5c6dc;
 }

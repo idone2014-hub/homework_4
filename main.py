@@ -1,7 +1,6 @@
 import os
 import subprocess
 import sys
-from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
@@ -64,9 +63,10 @@ class MainWindow(QMainWindow):
         self.selected_file = ''
 
         self.setWindowTitle("Student Grade Correction")
-        self.resize(900, 650)
+        self.resize(980, 650)
 
         central_widget = QWidget()
+        central_widget.setObjectName("centralWidget")
         self.setCentralWidget(central_widget)
 
         main_layout = QVBoxLayout()
@@ -94,13 +94,20 @@ class MainWindow(QMainWindow):
 
         self.table = QTableWidget(50, 3)
         self.table.setHorizontalHeaderLabels(["ID", "Original Grades", "Corrected Grades"])
-        self.table.setColumnWidth(0, 150)
-        self.table.setColumnWidth(1, 220)
-        self.table.setColumnWidth(2, 220)
+        self.table.setColumnWidth(0, 200)
+        self.table.setColumnWidth(1, 280)
+        self.table.setColumnWidth(2, 280)
 
         for row in range(50):
             self.table.setRowHeight(row, 38)
-        main_layout.addWidget(self.table)
+
+        self.table.setFixedWidth(828)
+
+        table_layout = QHBoxLayout()
+        table_layout.addStretch()
+        table_layout.addWidget(self.table)
+        table_layout.addStretch()
+        main_layout.addLayout(table_layout)
 
         footer = QHBoxLayout()
         bonus_label = QLabel("Bonus points:")
